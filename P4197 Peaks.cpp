@@ -1,10 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int N = 1e6 + 5;
-struct Edge{
+struct Edge
+{
 	int x, y, z;
 }e[N];
-struct kruskal_tree{
+struct kruskal_tree
+{
 	int val, ls, rs, L, R;
 }t[N];
 struct HJT_tree{
@@ -104,40 +106,23 @@ int main()
 	}
 	dfs(cnt, 0);
 	root[0] = build(0, 1, n);
-	// for(int i = 1; i <= n; i++)
-	// 	cout << ary[i] << ' ';
-	// cout << '\n';
 	for(int i = 1; i <= n; i++)
 		root[i] = change(root[i - 1], 1, n, ary[i], 1);
-	/*
-	for(int i = 1; i <= n; i++)
-		cout << temp[i] << ' ';
-	for(int i = 1; i <= 2 * n - 1; i++)
-		cout << t[i].L << ' ' << t[i].R << '\n';
-	cout << '\n';
-	*/
-	int lastans = 0;
 	while(q--)
 	{
 		int v, x, k;
 		cin >> v >> x >> k;
-		v = (v ^ lastans) % n + 1;
-		k = (k ^ lastans) % n + 1;
-		x = x ^ lastans;
 		for(int i = 20; i >= 0; i--)
 			if(t[f[v][i]].val <= x && f[v][i])
 				v = f[v][i];
-		// cout << t[v].L << ' ' <<t[v].R << '\n';
 		int len = t[v].R - t[v].L + 1;
 		if(len < k)
 		{
-			lastans = 0;
 			cout << -1 << '\n';
 			continue;
 		}
 		k = len - k + 1;
-		lastans = temp[query(root[t[v].R], root[t[v].L - 1], 1, n, k)];
-		cout << lastans << '\n';
+		cout << temp[query(root[t[v].R], root[t[v].L - 1], 1, n, k)] << '\n';
 	}
 	return 0;
 }
