@@ -12,7 +12,6 @@ signed main()
     f[1][0] = 1;
     for(int i = 1; i <= p; i++)
         for(int j = 1; j <= n; j++)
-        {
             for(int k = 1; k * k <= j; k++)
                 if(j % k == 0)
                 {
@@ -20,7 +19,6 @@ signed main()
                     if(k != j / k) f[j][i] += f[j / k][i - 1];
                     f[j][i] %= mod;
                 }
-        }
     for(int i = 1; i <= n; i++)
         ans = (ans + f[i][p]) % mod;
     cout << ans;
