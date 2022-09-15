@@ -1,9 +1,10 @@
 #include<bits/stdc++.h>
+#define int long long
 using namespace std;
 int n, ans;
 stack<int>s;
 int a[1000005], d[1000005], l[1000005], r[1000005];
-int main()
+signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);cout.tie(0);
