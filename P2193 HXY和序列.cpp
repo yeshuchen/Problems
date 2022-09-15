@@ -9,19 +9,15 @@ signed main()
     ios::sync_with_stdio(false);
     cin.tie(0);cout.tie(0);
     cin >> n >> p;
-    f[1][0] = 1;
-    for(int i = 1; i <= p; i++)
-        for(int j = 1; j <= n; j++)
-            for(int k = 1; k * k <= j; k++)
-                if(j % k == 0)
-                {
-                    f[j][i] += f[k][i - 1];
-                    if(k != j / k) f[j][i] += f[j / k][i - 1];
-                    f[j][i] %= mod;
-                }
     for(int i = 1; i <= n; i++)
-        ans = (ans + f[i][p]) % mod;
+        f[1][i] = 1;
+    for(int i = 2; i <= p; i++)
+        for(int j = 1; j <= n; j++)
+            for(int k = 1; k <= n / j; k++)
+                f[i][j * k] = (f[i][j * k] + f[i - 1][j]) % mod;
+    for(int i = 1; i <= n; i++)
+        ans = (ans + f[p][i]) % mod;
     cout << ans;
     return 0;
 }
-// 设f[i][j]表示第j位置填i的方案
+// 设f[i][j]表示第i位置填j的方案
