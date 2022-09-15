@@ -15,12 +15,15 @@ int main()
             cin >> a[i][j];
     for(int i = 1; i <= n; i++)
         for(int j = i; j <= m; j++)
+        {
+            f[i][j] = INT_MIN;
             for(int k = i - 1; k < j; k++)
                 if(f[i][j] < f[i - 1][k] + a[i][j])
                 {
                     f[i][j] = f[i - 1][k] + a[i][j];
                     pos[i][j] = k;
                 }
+        }
     int p = 0;
     for(int i = n; i <= m; i++)
         if(f[n][i] > ans)
