@@ -11,6 +11,10 @@ int main()
         string s;
         cin >> n >> a >> e;
         cin >> s;
+        for(int i = 0; i < s.size(); i++)
+            if(s[i] == 'A')
+                cnt++;
+        
     }
     return 0;
 }
