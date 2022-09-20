@@ -35,3 +35,7 @@ signed main()
     cout << abs(X) + abs(Y);
     return 0;
 }
+/*
+模拟水题
+挂分原因：数组开小
+*/

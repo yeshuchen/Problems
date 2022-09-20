@@ -69,3 +69,7 @@ signed main()
     cout << ans << '\n';
     return 0;
 }
+/*
+贪心+排序
+树状数组维护即可
+*/
