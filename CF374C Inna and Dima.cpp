@@ -55,8 +55,6 @@ int main()
         return 0;
     }
     int ans = 0; 
-    // for(int i = 1; i <= n * m; i++)
-    //     cout << dep[i] << ' ';
     for(int i = 1; i <= n * m; i++)
         if(c[(i - 1) / m + 1][(i - 1) % m + 1] == 'A')
             ans = max(ans, f[i]);
