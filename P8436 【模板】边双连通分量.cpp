@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int N=2e6+5,M=5e6+5;
+const int N = 2e6 + 5, M = 5e6 + 5;
 int n, m, q, tot, top, res, cnt;
 int ver[M], nxt[M], head[M];
 int dfn[N], stk[N], low[N];
