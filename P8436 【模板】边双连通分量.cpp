@@ -4,7 +4,7 @@ const int N=2e6+5,M=5e6+5;
 int n, m, q, tot, top, res, cnt;
 int ver[M], nxt[M], head[M];
 int dfn[N], stk[N], low[N];
-int f[N], vis[N];
+int vis[N];
 vector<int> g[N];
 inline void add(int x,int y)
 {
@@ -35,28 +35,26 @@ void tarjan(int x,int fa)
         if(y == fa) f = 1;
     }
 }
-int find(int k){return f[k] == k ? k : f[k] = find(f[k]);} 
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0); cout.tie(0);
 	cin >> n >> m;
-	for(int i = 1; i <= n; i++) f[i] = i;
     for(int i = 1; i <= m; i++)
     {
         int x, y;
         cin >> x >> y;
         add(x, y);
         add(y, x);
-        f[find(x)] = find(y);
     }
-    for(int i = 1; i <= n; i++)
-    {
-        int fi = find(i);
-    	if(!vis[fi])
-    		add(0, fi), vis[fi] = 1;
-    }
- 	tarjan(0, 0);
+ 	for(int i = 1; i <= n; i++)
+        if(!dfn[i])
+        {
+            tarjan(i, 0);
+            cnt++;
+            while(top)
+                g[cnt].push_back(stk[top--]);
+        }
     cout << cnt << '\n';
     for(int i = 1;i <= cnt; i++)
     {
