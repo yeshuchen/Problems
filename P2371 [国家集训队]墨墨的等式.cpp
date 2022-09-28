@@ -14,7 +14,7 @@ signed main()
     sort(a + 1, a + n + 1);
     f[0] = 0;
     for(int i = 1; i < a[1]; i++)
-        f[i] = INT_MAX;
+        f[i] = LONG_LONG_MAX;
     queue<int> q;
     q.push(0); vis[0] = 1;
     while(!q.empty())
@@ -35,7 +35,7 @@ signed main()
     for(int i = 0; i < a[1]; i++)
     {
         if(r >= f[i]) ans += ((r - f[i]) / a[1] + 1);
-        if(l > f[i]) ans -= ((l - f[i]) / a[1] + 1);
+        if(l > f[i]) ans -= ((l - 1 - f[i]) / a[1] + 1);
     }
     cout << ans;
     return 0;
