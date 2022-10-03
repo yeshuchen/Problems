@@ -34,7 +34,7 @@ signed main()
         m[i] = mul / a[i];
         exgcd(m[i], a[i]);
         x = (x % a[i] + a[i]) % a[i];
-        ans += (__int128)(b[i] * m[i] % mul * x % mul);
+        ans += (__int128)b[i] * m[i] % mul * x % mul;
     }
     ans %= mul;
     write(ans);
