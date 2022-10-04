@@ -6,14 +6,12 @@ vector<int> g[1000006];
 inline bool check(int t, int L, int R, int k)
 {
     queue<int> q; stack<int> s;
-    q.push(t); s.push(t);
+    q.push(t); s.push(0);
     int l, r;
     if(k == 1) l = g[a[1]][1], r = g[a[1]][1];
     else l = g[a[2 * n]][0], r = g[a[2 * n]][0];
-	cout << 1;
     for(int i = 1; i < n; i++)
     {
-		cout << 1 << '\n';
         if(g[a[L]][1] == l - 1)
         {
             q.push(0);
@@ -54,6 +52,8 @@ inline bool check(int t, int L, int R, int k)
 }
 int main()
 {
+	ios::sync_with_stdio(false);
+	cin.tie(0); cout.tie(0);
     cin >> T;
     while(T--)
     {
