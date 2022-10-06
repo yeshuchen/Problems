@@ -29,7 +29,6 @@ inline void build()
             else ch[t][i] = ch[fa[t]][i];
         }
     }
-    
 }
 int p, ans;
 string s;
@@ -43,7 +42,7 @@ int main()
         string s;
         cin >> s;
         insert(s);
-    }
+    } 
     cin >> s; build();
     for(int i = 0 ; i < s.size(); i++)
     {
