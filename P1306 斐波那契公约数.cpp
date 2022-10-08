@@ -30,7 +30,7 @@ inline void muler()
 		for(int j = 1; j <= 2; j++)
 			for(int k = 1; k <= 2; k++)
 				c[i][j] += f[i][k] * b[k][j];
-	cout << c[1][1] % mod << '\n';
+	cout << c[1][1] % mod;
 }
 inline void power(int b)
 {
