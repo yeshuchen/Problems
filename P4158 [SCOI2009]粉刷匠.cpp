@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-#define int long long
 using namespace std;
 int n, m, t;
 int p[51][2];
@@ -43,9 +42,8 @@ signed main()
 		}
 		for(int v = t; v >= i; v--)
 		{
-			for(int k = 1; k <= t; k++)
+			for(int k = 1; k <= v; k++)
 			{
-				if(k > v) break;
 				for(int j = k; j <= m; j++)
 					dp[v] = max(dp[v], dp[v - k] + max(f[0][j][k], f[1][j][k]));
 			}
