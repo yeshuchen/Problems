@@ -18,11 +18,12 @@ int main()
 		if(c[p + 1] == c[i]) nxt[i] = p + 1;
 		else nxt[i] = 0;
 	}
-	for(int i = 1; i <= n; i++)
+	for(int i = 2; i <= n; i++)
 	{
+		if(!nxt[i]) continue;
 		int p = i;
 		while(nxt[p]) p = nxt[p];
-		nxt[i] = p;
+		nxt[i] = p; 
 		ans += i - p;
 	}
 	cout << ans;
