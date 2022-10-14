@@ -16,7 +16,6 @@ inline void dfs(int x, int fa)
     for(int i = head[x]; i; i = nxt[i])
     {
         int y = ver[i];
-        if(y == fa) continue;
         dfs(y, x);
         g.push_back(f[y]);
     }
@@ -36,17 +35,17 @@ int main()
     cin.tie(0); cout.tie(0);
     while(cin >> n >> t)
     {
+        tot = 0;
+        memset(head, 0, sizeof(head));
         if(!n && !t) break;
         for(int i = 1; i <= n; i++)
         {
             int x;
             cin >> x;
             add(x, i);
-            add(i, x);
         }
         dfs(0, 0);
         cout << f[0] << '\n';
-        for(int i = 0; i <= n; i++) head[i] = 0; 
     }
     return 0;
 }
