@@ -35,7 +35,7 @@ int main()
 		add(y, x);
 	}
 	dfs(1, 0);
-	int ans = 0;
+	int ans = INT_MIN;
 	for(int i = 1; i <= n; i++)
 		ans = max(ans, f[i]);
 	cout << ans;
