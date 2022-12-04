@@ -15,7 +15,6 @@ int main()
         int b1 = s.find('b'), b2 = s.find('B');
         if(r1 > r2 || g1 > g2 || b1 > b2)cout << "NO\n";
         else cout << "YES\n";
-
     }
     return 0;
 }
