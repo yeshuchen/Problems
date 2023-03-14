@@ -15,30 +15,21 @@ int main()
 		if(a[i] < a[pos]) pos = i;
 		minn[i] = a[pos];
 	}
-	int x;
-	for(int i = 1; i < m; i++)
+	int last = n;
+	for(int i = 1; i <= m; i++)
 	{
+		int x;
 		cin >> x;
-		int l = 1, r = n;
-		while(l < r)
+		for(int j = last; j >= 0; j--)
 		{
-			int mid = l + r >> 1;
-			if(minn[mid] >= x) l = mid + 1;
-			else r = mid;
+			if(minn[j] >= x)
+			{
+				last = j - 1;
+				break;
+			}
+			if(j == 0) {cout << 0; return 0;}
 		}
-		if(a[l] >= x) n = l - 1;
-		else n = l - 2;
 	}
-	cin >> x;
-	if(n < 1 || minn[1] < x) {cout << 0; return 0;}
-	int l = 1, r = n;
-	while(l < r)
-	{
-		int mid = l + r >> 1;
-		if(minn[mid] >= x) l = mid + 1;
-		else r = mid;
-	}
-	if(minn[l] >= x) cout << l;
-	else cout << l - 1;
+	cout << last + 1;
 	return 0;
 }
