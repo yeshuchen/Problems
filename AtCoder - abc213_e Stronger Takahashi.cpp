@@ -8,7 +8,7 @@ int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 inline bool bfs()
 {
 	queue< pair<int, int> > q;
-	for(int i = 0; i < v.size(); i++) q.push(v[i])
+	for(int i = 0; i < v.size(); i++) q.push(v[i]);
 	v.clear();
 	while(!q.empty())
 	{
