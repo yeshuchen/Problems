@@ -7,10 +7,9 @@ vector< pair<int, int> > v;
 int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 inline bool bfs()
 {
-	v.clear();
-	memset(vis, 0, sizeof(vis));
 	queue< pair<int, int> > q;
-	q.push(make_pair(1, 1));
+	for(int i = 0; i < v.size(); i++) q.push(v[i])
+	v.clear();
 	while(!q.empty())
 	{
 		int x = q.front().first, y = q.front().second; q.pop();
@@ -35,6 +34,7 @@ int main()
 	for(int i = 1; i <= n; i++)
 		for(int j = 1; j <= m; j++)
 			cin >> c[i][j];
+    v.push_back(make_pair(1, 1));
 	while(!bfs())
 	{
 		ans++;
