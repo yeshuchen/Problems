@@ -14,20 +14,11 @@ int main()
 	{
 		int x, y, z;
 		cin >> x >> y >> z;
-		if(z & 1)
-		{
-			f[find(x)] = find(y + n);
-			f[find(y)] = find(x + n);
-		}
-		else
-		{
-			f[find(x)] = find(y);
-			f[find(x + n)] = find(y + n);
-		}
+		f[find(x)] = find(y);
 	}
 	for(int i = 1; i <= n; i++)
 		if(!vis[find(i)])
-			cnt++, vis[find(i)] = vis[find(i + n)] = 1;
+			cnt++, vis[find(i)] = 1;
 	cout << cnt;
 	return 0;
 }
