@@ -6,22 +6,26 @@ int n, d, k;
 int x[N], s[N], q[N], f[N];
 inline bool check(int dis)
 {
-	int h = 1, t = 0, maxn = 0;
-	f[1] = s[1]; q[++t] = 1;
-	for(int i = 2; i <= n; i++) f[i] = 0;
-	for(int i = 2; i <= n; i++)
+	int h = 1, t = 0, pos = 0;
+	for(int i = 1; i <= n; i++)
 	{
-		int l = max(x[i] - d - dis, 1ll), r = min(x[i] - d + dis, x[i]);
-		l = lower_bound(x + 1, x + n + 1, l) - x;
-		r = upper_bound(x + 1, x + n + 1, r) - x - 1;
-		if(l > r) break;
-		while(h <= t && q[h] < l) h++;
-		while(h <= t && f[q[t]] <= f[r]) t--;
-		q[++t] = r;
+		f[i] = -1e18;
+		int l = max(x[i] - d - dis, 0ll), r = min(x[i] - d + dis, x[i] - 1);
+		while(h <= t && x[q[h]] < l) h++;
+		while(x[pos] <= r)
+		{
+			if(x[pos] >= l)
+			{
+				while(h <= t && f[q[t]] < f[pos]) t--;
+				q[++t] = pos; 
+			}
+			pos++;
+		}
+		if(h > t) continue;
 		f[i] = f[q[h]] + s[i]; 
-		maxn = max(maxn, f[i]);
+		if(f[i] >= k) return true;
 	}
-	return (maxn >= k);
+	return false;
 }
 signed main()
 {
@@ -32,7 +36,7 @@ signed main()
 	for(int i = 1; i <= n; i++)
 		cin >> x[i] >> s[i], res += max(s[i], 0ll);
 	if(res < k) {cout << -1 << '\n'; return 0;}
-	int l = 0, r = x[n], ans = 0;
+	int l = 0, r = max(x[n], d), ans = 0;
 	while(l <= r)
 	{
 		int mid = l + r >> 1;
