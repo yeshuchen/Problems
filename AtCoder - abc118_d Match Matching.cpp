@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n, m;
-int a[15], f[5001][10001];
+int a[15], dp[10005];
 int spt[15] = {0, 2, 5, 5, 4, 5, 6, 3, 7, 6};
 int main()
 {
@@ -10,27 +10,21 @@ int main()
 	cin >> n >> m;
 	for(int i = 1; i <= m; i++) cin >> a[i];
 	sort(a + 1, a + m + 1);
-	f[0][0] = 1;
-	for(int i = 1; i <= 5000; i++)
-		for(int j = 1; j <= m; j++)
-			for(int k = n; k >= spt[a[j]]; k--)
-				f[i][k] |= f[i - 1][k - spt[a[j]]];
-	for(int i = 5000; i >= 1; i--)
-		if(f[i][n])
-		{
-			int tmp = n;
-			for(int pos = i; pos; pos--)
-				for(int j = m; j; j--)
-				{
-					if(tmp < spt[a[j]]) continue;
-					if(f[pos - 1][tmp - spt[a[j]]])
-					{
-						tmp -= spt[a[j]];
-						cout << a[j];
-						break;
-					}
-				}
-			break;
-		}
+	memset(dp, -1, sizeof(dp));
+	dp[0] = 0;
+	for(int i = 1; i <= m; i++)
+		for(int j = spt[a[i]]; j <= n; j++)
+			dp[j] = max(dp[j], dp[j - spt[a[i]]] + 1);
+	int i = n;
+	while(i)
+	{
+		for(int j = m; j; j--)
+			if(i >= spt[a[j]] && dp[i - spt[a[j]]] + 1 == dp[i])
+			{
+				i -= spt[a[j]];
+				cout << a[j];
+				break;
+			}
+	}
 	return 0;
 }
