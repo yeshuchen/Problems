@@ -13,10 +13,7 @@ struct Suffix_Array {
 		memset(rk, 0, sizeof(rk));
 		memset(sa, 0, sizeof(sa));
 		memset(cnt, 0, sizeof(cnt));
-		memset(height, 0, sizeof(height));
-		memset(st, 0, sizeof(st));
 		memset(oldrk, 0, sizeof(oldrk));
-		memset(id, 0, sizeof(id));
 		for(int i = 1; i <= n; i++)
 		{
 			rk[i] = s[i];

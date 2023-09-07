@@ -16,21 +16,41 @@ inline void buildst()
 }
 inline int query(int l, int r)
 {
-	if(l == r) return INT_MAX;
+	if(l == r) return n - sa[l] + 1;
 	l++; int k = lg2[r - l + 1];
 	return min(st[l][k], st[r - (1 << k) + 1][k]); 
 }
-inline bool find(int l, int r, int L, int R)
+int rt[N << 4], ls[N << 4], rs[N << 4], sum[N << 4], ret;
+inline int build(int root, int l, int r)
 {
-	for(int i = l; i <= r; i++)
-		if(L <= sa[i] && sa[i] <= R)
-			return true;
-	return false;
+	root = ++ret;
+	if(l == r) return root;
+	int mid = l + r >> 1;
+	ls[root] = build(ls[root], l, mid);
+	rs[root] = build(rs[root], mid + 1, r);
+	return root;
+}
+inline int change(int root, int l, int r, int d)
+{
+	int nrt = ++ret;
+	sum[nrt] = sum[root] + 1;
+	if(l == r) return nrt;
+	int mid = l + r >> 1; ls[nrt] = ls[root]; rs[nrt] = rs[root];
+	if(d <= mid) ls[nrt] = change(ls[root], l, mid, d);
+	else rs[nrt] = change(rs[root], mid + 1, r, d);
+	return nrt;
+}
+inline int find(int lrt, int rrt, int l, int r, int L, int R)
+{
+	if(L <= l && r <= R) return sum[rrt] - sum[lrt];
+	int mid = l + r >> 1, val = 0;
+	if(L <= mid) val += find(ls[lrt], ls[rrt], l, mid, L, R);
+	if(R > mid) val += find(rs[lrt], rs[rrt], mid + 1, r, L, R);
+	return val;
 }
 inline bool check(int len)
 {
 	int p = rk[c];
-	// cout << len << ' ' << p << '\n';
 	int l = 1, r = p, L = 0, R = 0;
 	while(l <= r)
 	{
@@ -45,8 +65,7 @@ inline bool check(int len)
 		if(query(p, mid) >= len) l = (R = mid) + 1;
 		else r = mid - 1;
 	}
-	// cout << L << ' ' << R << '\n';
-	return find(L, R, a, b - len + 1);
+	return find(rt[L - 1], rt[R], 1, n, a, b - len + 1);
 }
 int main()
 {
@@ -76,6 +95,9 @@ int main()
 		height[rk[i]] = k;
 	}
 	buildst();
+	rt[0] = build(rt[0], 1, n);
+	for(int i = 1; i <= n; i++)
+		rt[i] = change(rt[i - 1], 1, n, sa[i]);
 	while(m--)
 	{
 		int l, r, ans = 0;
