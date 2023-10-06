@@ -66,13 +66,8 @@ int main()
 				pos[j + v[i * 2]] = i * 2;
 			}
 		}
-		// for(int j = 0; j <= n2; j++)
-		// 	cerr << f[j] << ' ';
-		// cerr << '\n';
 	}
 	int cost = 0;
-	// cerr << res << ' ' << cnt << '\n';
-	// cerr << f[1] << '\n';
 	for(int i = n2; i >= max(n2 - cnt, 0); i--)
 		if(f[i] == res - cnt)
 		{
