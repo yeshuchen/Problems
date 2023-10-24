@@ -12,8 +12,6 @@ bool cmp(node x, node y) {return x.num > y.num;}
 bool check(int rate)
 {
 	for(int i = 1; i <= n; i++) a[i].num = a[i].v - rate * a[i].w;
-	// for(int i = 1; i <= n; i++) cout << a[i].num << ' ';
-	// cout << '\n';
 	for(int i = 1; i <= W; i++) dp[i] = INT_MIN; dp[0] = 0;
 	for(int i = 1; i <= n; i++)
 		for(int j = W; j >= 0; j--)
@@ -31,7 +29,6 @@ signed main()
 		a[i].v *= 1000;
 	}
 	int l = 1, r = 1e6, ans;
-	check(1066);
 	while(l <= r)
 	{
 		int mid = (l + r) / 2;
