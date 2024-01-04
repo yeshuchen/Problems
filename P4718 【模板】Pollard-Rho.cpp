@@ -22,6 +22,7 @@ bool Miller(int n)
 	for(int _i = 1; _i <= 10; _i++)
 	{
 		int a = rd(2, n - 1), v = ksm(a, d, n);
+		// cout << a << ' ' << r << ' ' << v << '\n';
 		if(v == 1) continue;
 		for(int i = 0; i <= r; i++)
 		{
@@ -37,7 +38,11 @@ int Pollard(int n) {
 	auto f = [&](int x) {return ((__int128) x * x + c) % n;};
 	int acc = 0, prod = 1, d, limit = 1;
 	while(s != t) {
-		if((d = __gcd(abs(s - t), n)) > 1) return d;
+		prod = (__int128) prod * abs(s - t) % n;
+		if(++acc == limit) {
+    		if((d = __gcd(prod, n)) > 1) return d;
+    		acc = 0; limit = min(127ll, limit << 1);
+    	}
     	s = f(f(s)), t = f(t);
   	}
   	if((d = __gcd(prod, n)) > 1) return d;
